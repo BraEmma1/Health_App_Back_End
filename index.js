@@ -27,8 +27,8 @@ app.use(passport.initialize());
 //Initialize Routes
 
 app.use(authRouter);
-app.use( userProfileRouter);
-app.use( postRouter);
+app.use(userProfileRouter);
+app.use(postRouter);
 
 
 
