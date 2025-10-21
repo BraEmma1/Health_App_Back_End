@@ -9,12 +9,14 @@ import { postRouter } from './routes/postRoutes.js'; // Import the post router
 import passport from 'passport';
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
+import cors from 'cors';
 
 
 
 
 // initialize express app
 const app = express();
+app.use(cors()); // Enable CORS for all origins, as the first middleware
 
 
 // Middleware

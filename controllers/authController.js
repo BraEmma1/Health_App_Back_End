@@ -72,7 +72,7 @@ export const registerUser = async (req, res) => {
                 }
             }
 
-            // TODO: Send verification email/SMS with the token
+            //  Send verification email/SMS with the token
             try {
                 sendVerificationEmail(newUser.email, verificationToken);
             } catch (emailError) {
@@ -183,6 +183,8 @@ export const loginUser = async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Login successful",
+            user,
+            token,
         });
     } catch (error) {
         res.status(500).json({ success: false, message: error.message });
