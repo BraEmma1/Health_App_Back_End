@@ -37,7 +37,7 @@ const swaggerOptions = {
       description: 'API documentation for Ditechted Health App',
     },
     servers: [
-      { url: 'http://localhost:3000', description: 'Local server' },
+      { url: 'https://ditechted-health-app.vercel.app/', description: 'Production server' },
     ],
   },
   apis: ['./routes/*.js', './models/*.js'], // Path to the API docs
