@@ -4,6 +4,15 @@ import { authenticateUser } from "../middlewares/authMiddleware.js";
 
 export const authRouter = Router();
 
+/**
+ * @swagger
+ * /test:
+ *   get:
+ *     summary: Health check (Swagger setup test)
+ *     responses:
+ *       200:
+ *         description: OK
+ */
 authRouter.post('/auth/register', registerUser);
 
 authRouter.post('/auth/verify-email', verifyUserEmail);

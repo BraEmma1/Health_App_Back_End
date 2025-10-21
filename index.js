@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 import { userProfileRouter } from './routes/userProfileRoutes.js'; // Import the new router
 import { postRouter } from './routes/postRoutes.js'; // Import the post router
 import passport from 'passport';
+import swaggerUi from 'swagger-ui-express';
+import swaggerJsdoc from 'swagger-jsdoc';
 
 
 
@@ -22,6 +24,24 @@ app.use(cookieParser()); // Add cookie parser middleware
 // Passport configuration
 configurePassport();
 app.use(passport.initialize());
+
+// Swagger setup
+const swaggerOptions = {
+  swaggerDefinition: {
+    openapi: '3.0.0',
+    info: {
+      title: 'Ditechted Health App API',
+      version: '1.0.0',
+      description: 'API documentation for Ditechted Health App',
+    },
+    servers: [
+      { url: 'http://localhost:3000', description: 'Local server' },
+    ],
+  },
+  apis: ['./routes/*.js', './models/*.js'], // Path to the API docs
+};
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 //Initialize Routes

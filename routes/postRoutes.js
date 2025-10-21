@@ -27,6 +27,44 @@ import {
 
 const postRouter = Router();
 
+/**
+ * @swagger
+ * /posts:
+ *   post:
+ *     summary: Create a new post
+ *     tags: [Posts]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               content:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Post created
+ *       400:
+ *         description: Invalid data
+ *   get:
+ *     summary: Get all posts (with filters)
+ *     tags: [Posts]
+ *     parameters:
+ *       - in: query
+ *         name: author
+ *         schema:
+ *           type: string
+ *         description: Author ID
+ *         required: false
+ *     responses:
+ *       200:
+ *         description: List of posts
+ */
 // Validation middleware function
 const validate = (schema) => {
   return (req, res, next) => {
@@ -103,6 +141,16 @@ postRouter.get(
   getAllPosts
 );
 
+/**
+ * @swagger
+ * /posts/trending:
+ *   get:
+ *     summary: Get trending posts
+ *     tags: [Posts]
+ *     responses:
+ *       200:
+ *         description: List of trending posts
+ */
 // Get trending posts
 postRouter.get(
   "/trending",
@@ -110,6 +158,23 @@ postRouter.get(
   getTrendingPosts
 );
 
+/**
+ * @swagger
+ * /posts/search:
+ *   get:
+ *     summary: Search posts
+ *     tags: [Posts]
+ *     parameters:
+ *       - in: query
+ *         name: query
+ *         schema:
+ *           type: string
+ *         description: Search term
+ *         required: true
+ *     responses:
+ *       200:
+ *         description: List of posts
+ */
 // Search posts
 postRouter.get(
   "/search",
