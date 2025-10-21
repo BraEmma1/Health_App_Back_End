@@ -370,20 +370,16 @@ export const googleAuthCallback = (req, res, next) => {
 export const loginFailed = (req, res) => {
     res.status(401).json({ success: false, message: "Login failed" });
 };
+
+
 // Google login success handler
 export const googleLoginSuccess = (req, res) => {
     const user = req.user;
-    const profilePictureUrl =
-        user.profilePicture ||
-        "https://res.cloudinary.com/dz4qj1x8h/image/upload/v1709300000/default-profile-picture.png";
-    const htmlResponse = `
-        <h1>Hello, ${user.firstName || user.fullName}! Welcome!</h1>
-        <p>Here's your profile picture:</p>
-        <img src="${profilePictureUrl}" alt="Profile Picture" style="width:100px; height:100px; border-radius:50%;">
-    `;
-    res.send(htmlResponse);
+    
+    const redirectUrl = `http://localhost:5173/onboarding?userId=${user._id}`;
+    res.redirect(redirectUrl);
 };
-
+ 
 
 // GOOGLE USER LOGOUT HANDLER
 export const userLogout = (req, res, next) => {
